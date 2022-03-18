@@ -53,7 +53,7 @@ public class CursoService {
 	}
 
 	public Page<Curso> findByNome(String nome, Pageable pageable) {
-		return cursoRepository.findByNome(nome, pageable);
+		return cursoRepository.findByNomeIgnoreCaseContaining(nome, pageable);
 	}
 	
 }

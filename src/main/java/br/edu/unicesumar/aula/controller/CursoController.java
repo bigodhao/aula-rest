@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unicesumar.aula.domain.Curso;
@@ -27,20 +28,15 @@ public class CursoController {
 
 	@Autowired
 	private CursoService service;
-	
-	@GetMapping("/search")
-	public Page<Curso> findByNome(@PathParam(value = "nome") String nome, Pageable pageable) {
-		return service.findByNome(nome, pageable);
-	}
-	
+
 	@GetMapping("/{id}")
 	public Curso buscarCursoPorId(@PathVariable(name="id") Long id){
 		return service.findById(id);
 	}
 	
 	@GetMapping
-	public Page<Curso> buscarTodasAsCursos(Pageable pageable){
-		return service.findAll(pageable);
+	public Page<Curso> buscarTodasOsCursos(@RequestParam(required=false,value="nome",defaultValue="") String nome, Pageable pageable){
+		return service.findByNome(nome, pageable);
 	}
 	
 	@PostMapping
