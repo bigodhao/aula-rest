@@ -1,9 +1,5 @@
 package br.edu.unicesumar.aula.controller;
 
-import java.util.List;
-
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.unicesumar.aula.domain.Pessoa;
@@ -26,19 +23,14 @@ public class PessoaController {
 	@Autowired
 	private PessoaService service;
 	
-	@GetMapping("/search")
-	public Page<Pessoa> findByNome(@PathParam(value = "nome") String nome, Pageable pageable) {
-		return service.findByNome(nome, pageable);
-	}
-	
 	@GetMapping("/{id}")
 	public Pessoa buscarPessoaPorId(@PathVariable(name="id") Long id){
 		return service.findById(id);
 	}
 	
 	@GetMapping
-	public Page<Pessoa> buscarTodasAsPessoas(Pageable pageable){
-		return service.findAll(pageable);
+	public Page<Pessoa> buscarTodasAsPessoas(@RequestParam(required=false,value="nome",defaultValue="") String nome, Pageable pageable){
+		return service.findByNome(nome, pageable);
 	}
 	
 	@PostMapping
