@@ -49,7 +49,7 @@ public class PessoaService {
 	}
 
 	public Page<Pessoa> findByNome(String nome, Pageable pageable) {
-		return pessoaRepository.findByNome(nome, pageable);
+		return pessoaRepository.findByNomeIgnoreCaseContaining(nome, pageable);
 	}
 	
 }
