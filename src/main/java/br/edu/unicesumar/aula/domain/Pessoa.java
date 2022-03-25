@@ -22,7 +22,6 @@ public class Pessoa {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name="nome_completo")
 	private String nome;
 	
 	private String cpf;
