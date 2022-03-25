@@ -8,29 +8,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Getter
-@Setter
-@AllArgsConstructor
+@Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 public class Curso {
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private String nome;
-	
-	private String descricao;
-	
-	private Integer cargaHoraria;
+    private String nome;
 
-	private LocalDate dataInicio;
+    private String descricao;
 
-	private LocalDate dataFim;
+    private Long cargaHoraria;
+
+    private LocalDate dataInicio;
+
+    private LocalDate dataFim;
 
 }
