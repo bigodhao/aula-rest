@@ -1,5 +1,7 @@
 package br.edu.unicesumar.aula.domain;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -9,20 +11,18 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-public class Pessoa {
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Aula {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	private String nome;
-	
-	private String cpf;
-	
-	private Integer idade;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
+    private LocalDate data;
+    private String descricao;
+    private String conteudo;
+    
 }
